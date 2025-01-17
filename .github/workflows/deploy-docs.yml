@@ -16,11 +16,16 @@ jobs:
               uses: actions/checkout@v3
               with:
                 node-version: 16
+                cache: 'npm'
+                cache-dependency-path: '**/package-lock.json'
 
             - run: npm ci
 
             - name: Run npm build
               run: NODE_OPTIONS=--openssl-legacy-provider npm run build
+              env:
+                TURBO_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+                TURBO_TEAM: matheusbarcc
 
             - name: Deploy storybook
               working-directory: ./packages/docs
