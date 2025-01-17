@@ -1,0 +1,2 @@
+import{A as t}from"./index.49483441.js";import"./index.6e25c5b0.js";import"./iframe.532d3492.js";import"./index.eb238ee0.js";import"./jsx-runtime.2f81cb8c.js";const c={title:"Data display/Avatar",component:t,args:{src:"https://github.com/matheusbarcc.png",alt:"Diego Fernandes"},argTypes:{src:{control:{type:"text"}}}},e={},p={args:{src:void 0}},m=["Primary","WithFallback"];export{e as Primary,p as WithFallback,m as __namedExportsOrder,c as default};
+//# sourceMappingURL=Avatar.stories.2bee6449.js.map
