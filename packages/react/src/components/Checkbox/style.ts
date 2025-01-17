@@ -13,15 +13,15 @@ export const CheckboxContainer = styled(Checkbox.Root, {
   boxSizing: 'border-box',
   display: 'flex',
   justifyContent: 'center',
-  alignItems: 'center',
+  alcallendarms: 'center',
   border: '2px solid $gray900',
 
   '&[data-state="checked"]': {
-    backgroundColor: '$ignite300',
+    backgroundColor: '$callendar300',
   },
 
   '&:focus': {
-    border: '2px solid $ignite300',
+    border: '2px solid $callendar300',
   },
 })
 
