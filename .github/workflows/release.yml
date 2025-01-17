@@ -16,11 +16,14 @@ jobs:
           uses: actions/checkout@v3
 
         - name: Setup Node.js
-          uses: actions/checkout@v3
+          uses: actions/setup-node@v3
           with:
-            node-version: 16
+            node-version: '16'
             cache: 'npm'
             cache-dependency-path: '**/package-lock.json'
+
+        - name: Install dependencies (to sync package-lock)
+          run: npm install
 
         - run: npm ci
 
@@ -29,8 +32,9 @@ jobs:
           uses: changesets/action@v1
           with:
             publish: npm run release
-            env:
+          env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
             NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-            TURBO_TOKEN: kC2X6ZRkB7xcbkLgI74eoxDB
+            TURBO_TOKEN: ${{ secrets.VERCEL_TOKEN }}
             TURBO_TEAM: matheusbarcc
+
