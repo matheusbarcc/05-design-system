@@ -23,6 +23,9 @@ jobs:
 
             - name: Deploy storybook
               working-directory: ./packages/docs
-              run: NODE_OPTIONS=--openssl-legacy-provider npm run deploy-storybook -- --ci -existing-output-dir=storybook-static
+              run: |
+                touch storybook-static/.nojekyll 
+                git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/matheusbarcc/callendar-design-system
+                NODE_OPTIONS=--openssl-legacy-provider npm run deploy-storybook -- --ci -existing-output-dir=storybook-static
               env:
-                GH_TOKEN: ${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}
+                GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
