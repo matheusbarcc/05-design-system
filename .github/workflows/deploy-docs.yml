@@ -19,7 +19,8 @@ jobs:
 
             - run: npm ci
 
-            - run: NODE_OPTIONS=--openssl-legacy-provider npm run build
+            - name: Run npm build
+              run: NODE_OPTIONS=--openssl-legacy-provider npm run build
 
             - name: Deploy storybook
               working-directory: ./packages/docs
