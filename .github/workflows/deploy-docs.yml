@@ -6,27 +6,27 @@ on:
             - main
 
 jobs:
-    build-and-deploy:
-        runs-on: ubuntu-latest
-        steps:
-            - name: Checkout
-              uses: actions/checkout@v3
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
 
-            - name: Setup Node.js
-              uses: actions/setup-node@v3
-              with:
-                node-version: '16'
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+          cache: 'npm'
+          cache-dependency-path: '**/package-lock.json'
 
-            - run: npm ci
+      - name: Install dependencies (to sync package-lock)
+        run: npm install
 
-            - name: Run npm build
-              run: NODE_OPTIONS=--openssl-legacy-provider npm run build
-              env:
-                TURBO_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-                TURBO_TEAM: matheusbarcc
+      - run: npm ci
 
-            - name: Deploy storybook
-              working-directory: ./packages/docs
-              run: NODE_OPTIONS=--openssl-legacy-provider npm run deploy-storybook -- --ci -existing-output-dir=storybook-static
-              env:
-                GH_TOKEN: ${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}
+      - name: Run npm build
+        run: npm run build
+        env:
+          TURBO_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          TURBO_TEAM: matheusbarcc
+
